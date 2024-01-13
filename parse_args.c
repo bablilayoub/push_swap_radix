@@ -6,13 +6,13 @@
 /*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:06:15 by abablil           #+#    #+#             */
-/*   Updated: 2024/01/13 15:03:22 by abablil          ###   ########.fr       */
+/*   Updated: 2024/01/13 23:16:16 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	check_duplicates(t_swap *stack_a, char **args, int value, int allocated)
+void	check_duplicates(t_swap *stack_a, char **args, int value)
 {
 	t_swap	*temp;
 
@@ -21,8 +21,7 @@ void	check_duplicates(t_swap *stack_a, char **args, int value, int allocated)
 	{
 		if (temp->value == value)
 		{
-			if (allocated)
-				free_args(args);
+			free_args(args);
 			free_list(stack_a);
 			send_error();
 		}
@@ -66,32 +65,44 @@ int	is_valid_number(char *number)
 	return (1);
 }
 
-void	handle_args(char **args, int i, int allocated)
+char	**handle_args(char **args)
 {
+	char	*temp;
+	int		i;
+
+	i = 0;
+	temp = convert_args(args);
+	if (!temp)
+		send_error();
+	args = ft_split(temp, ' ');
+	if (!args)
+		send_error();
+	free(temp);
 	while (args[i])
 	{
 		if (!is_valid_number(args[i]))
 		{
-			if (allocated)
-				free_args(args);
+			free_args(args);
 			send_error();
 		}
 		i++;
 	}
+	return (args);
 }
 
-void	prepare_stack(t_swap **stack_a, char **args, int i, int allocated)
+void	prepare_stack(t_swap **stack_a, char **args)
 {
 	t_swap	*new_node;
+	int		i;
 
+	i = 0;
 	while (args[i])
 	{
-		check_duplicates(*stack_a, args, ft_atoi(args[i]), allocated);
+		check_duplicates(*stack_a, args, ft_atoi(args[i]));
 		new_node = new_list(ft_atoi(args[i]));
 		if (!new_node)
 		{
-			if (allocated && args)
-				free_args(args);
+			free_args(args);
 			free_list(*stack_a);
 			send_error();
 		}
@@ -99,7 +110,7 @@ void	prepare_stack(t_swap **stack_a, char **args, int i, int allocated)
 		push_back(stack_a, new_node);
 		i++;
 	}
-	if (allocated && args)
+	if (args)
 		free_args(args);
 	while (!all_indexed(*stack_a))
 		set_index(*stack_a);

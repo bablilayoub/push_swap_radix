@@ -6,7 +6,7 @@
 /*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 12:38:33 by abablil           #+#    #+#             */
-/*   Updated: 2023/11/15 10:05:36 by abablil          ###   ########.fr       */
+/*   Updated: 2024/01/13 20:06:00 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,6 @@ char	*ft_strjoin(char const *str1, char const *str2)
 		return (NULL);
 	ft_strlcpy(result, str1, total_length);
 	ft_strlcat(result, str2, total_length);
+	free((char *)str1);
 	return (result);
 }

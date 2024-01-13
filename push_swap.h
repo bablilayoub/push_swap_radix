@@ -6,7 +6,7 @@
 /*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 15:47:44 by abablil           #+#    #+#             */
-/*   Updated: 2024/01/13 15:00:18 by abablil          ###   ########.fr       */
+/*   Updated: 2024/01/13 23:16:07 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,10 @@ void	swap_b(t_swap **stack_b);
 void	swap_a_and_b(t_swap **stack_a, t_swap **stack_b);
 void	push_a(t_swap **stack_a, t_swap **stack_b);
 void	push_b(t_swap **stack_a, t_swap **stack_b);
-void	prepare_stack(t_swap **stack_a, char **args, int total, int allocated);
+void	prepare_stack(t_swap **stack_a, char **args);
 
 // Parse args
-void	handle_args(char **args, int i, int allocated);
-void	prepare_stack(t_swap **stack_a, char **args, int i, int allocated);
+char	**handle_args(char **args);
 
 // Start sorting
 void	start_sorting(t_swap **stack_a, t_swap **stack_b);
@@ -82,5 +81,6 @@ void	reverse_rotate(t_swap **stack);
 int		next_min_value(t_swap *stack, int min_value);
 void	free_args(char **args);
 void	send_error(void);
+char	*convert_args(char **args);
 
 #endif

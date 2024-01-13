@@ -6,7 +6,7 @@
 /*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:12:01 by abablil           #+#    #+#             */
-/*   Updated: 2024/01/13 19:47:01 by abablil          ###   ########.fr       */
+/*   Updated: 2024/01/13 23:15:56 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,41 @@ int	next_min_value(t_swap *stack, int min_value)
 	return (next_min_value);
 }
 
+char	*convert_args(char **args)
+{
+	char		*temp;
+	char		*result;
+	static int	i = 0;
+
+	result = ft_strdup("");
+	if (!result)
+		send_error();
+	while (args[++i])
+	{
+		temp = result;
+		result = ft_strjoin(result, check_arg(args[i]));
+		if (!result)
+		{
+			free(temp);
+			send_error();
+		}
+		temp = result;
+		result = ft_strjoin(result, " ");
+		if (!result)
+		{
+			free(temp);
+			send_error();
+		}
+	}
+	return (result);
+}
+
 void	free_args(char **args)
 {
 	int	i;
 
 	i = 0;
-	if (!args)
+	if (!args || !*args)
 		return ;
 	while (args[i])
 	{
