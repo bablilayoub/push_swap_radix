@@ -6,7 +6,7 @@
 /*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:12:01 by abablil           #+#    #+#             */
-/*   Updated: 2024/01/13 23:15:56 by abablil          ###   ########.fr       */
+/*   Updated: 2024/01/13 23:26:43 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char	*convert_args(char **args)
 	while (args[++i])
 	{
 		temp = result;
-		result = ft_strjoin(result, check_arg(args[i]));
+		result = ft_strjoin(result, args[i]);
 		if (!result)
 		{
 			free(temp);
