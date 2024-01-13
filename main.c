@@ -6,7 +6,7 @@
 /*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 16:09:33 by abablil           #+#    #+#             */
-/*   Updated: 2024/01/12 16:53:39 by abablil          ###   ########.fr       */
+/*   Updated: 2024/01/13 19:50:23 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	main(int total, char **args)
 	int		allocated;
 
 	if (total < 2)
-		send_error();
+		return (0);
 	stack_a = NULL;
 	stack_b = NULL;
 	allocated = 0;

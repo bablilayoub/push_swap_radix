@@ -6,7 +6,7 @@
 /*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:05:46 by abablil           #+#    #+#             */
-/*   Updated: 2024/01/13 18:33:35 by abablil          ###   ########.fr       */
+/*   Updated: 2024/01/13 19:39:40 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,20 @@ void	swap(t_swap **stack)
 {
 	t_swap	*temp_a;
 	t_swap	*temp_b;
+	t_swap	*temp_c;
 
 	if (!stack || !(*stack)->next)
 		return ;
 	temp_a = *stack;
 	temp_b = (*stack)->next;
-	temp_b->prev = NULL;
+	temp_c = (*stack)->next->next;
 	*stack = temp_b;
-	if (temp_b->next)
-	{
-		temp_a->next = temp_b->next;
-		temp_a->next->prev = temp_a;
-	}
 	temp_b->next = temp_a;
+	temp_b->prev = NULL;
+	temp_a->next = temp_c;
+	temp_a->prev = temp_b;
+	if (temp_c)
+		temp_c->prev = temp_a;
 }
 
 void	push(t_swap **stack_a, t_swap **stack_b)
@@ -64,12 +65,11 @@ void	reverse_rotate(t_swap **stack)
 
 	if (!stack || !*stack || !(*stack)->next)
 		return ;
-	first = *stack;
-	last_list = get_last_list(*stack);
-	*stack = last_list;
-	last_list->prev->next = NULL;
-	last_list->prev = NULL;
-	last_list->next = first;
-	first->prev = last_list;
+	last_list = *stack;
+	while (last_list->next)
+		last_list = last_list->next;
+	first = last_list->prev;
 	first->next = NULL;
+	last_list->prev = NULL;
+	push_front(stack, last_list);
 }

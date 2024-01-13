@@ -6,7 +6,7 @@
 /*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:12:01 by abablil           #+#    #+#             */
-/*   Updated: 2024/01/13 15:01:02 by abablil          ###   ########.fr       */
+/*   Updated: 2024/01/13 19:47:01 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,6 @@ void	free_args(char **args)
 
 void	send_error(void)
 {
-	ft_putstr_fd("Error \n", 2);
+	ft_putstr_fd("Error\n", 2);
 	exit(EXIT_FAILURE);
 }
