@@ -6,7 +6,7 @@
 /*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:05:46 by abablil           #+#    #+#             */
-/*   Updated: 2024/01/12 16:46:31 by abablil          ###   ########.fr       */
+/*   Updated: 2024/01/13 18:33:35 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,13 @@ void	swap(t_swap **stack)
 	temp_a = *stack;
 	temp_b = (*stack)->next;
 	temp_b->prev = NULL;
-	temp_a->next = temp_b->next;
-	temp_a->next->prev = temp_a;
-	temp_b->next = temp_a;
 	*stack = temp_b;
+	if (temp_b->next)
+	{
+		temp_a->next = temp_b->next;
+		temp_a->next->prev = temp_a;
+	}
+	temp_b->next = temp_a;
 }
 
 void	push(t_swap **stack_a, t_swap **stack_b)
